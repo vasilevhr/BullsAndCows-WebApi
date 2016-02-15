@@ -41,12 +41,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Contracts\IGamesService.cs" />
+    <Compile Include="GamesService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Data\BullsAndCows.Data.Models\BullsAndCows.Data.Models.csproj">
       <Project>{7f262115-a40c-4474-b52e-2ca2f20972eb}</Project>
       <Name>BullsAndCows.Data.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\BullsAndCows.Data\BullsAndCows.Data.csproj">
+      <Project>{f8164565-9a09-440d-8ac9-94e5dcd5b724}</Project>
+      <Name>BullsAndCows.Data</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

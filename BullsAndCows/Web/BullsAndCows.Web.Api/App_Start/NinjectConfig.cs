@@ -1,9 +1,13 @@
 ﻿namespace BullsAndCows.Web.Api
 {
+    using Data.Repositories;
+    using Data;
     using Ninject;
     using Ninject.Web.Common;
     using System;
     using System.Web;
+    using Services.Data.Contracts;
+    using Services.Data;
 
     public static class NinjectConfig
     {
@@ -27,7 +31,10 @@
 
         private static void RegisterServices(IKernel kernel)
         {
-            
+            kernel.Bind<IBullsAndCowsDbContext>().To<BullsAndCowsDbContext>();
+            kernel.Bind(typeof(IRepository<>)).To(typeof(GenericRepository<>));
+
+            kernel.Bind<IGamesService>().To<GamesService>();
         }
     } 
 }

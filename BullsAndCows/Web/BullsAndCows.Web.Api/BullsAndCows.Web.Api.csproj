@@ -282,8 +282,20 @@
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
-    <None Include="Project_Readme.html" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Data\BullsAndCows.Data.Models\BullsAndCows.Data.Models.csproj">
+      <Project>{7f262115-a40c-4474-b52e-2ca2f20972eb}</Project>
+      <Name>BullsAndCows.Data.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\BullsAndCows.Data\BullsAndCows.Data.csproj">
+      <Project>{f8164565-9a09-440d-8ac9-94e5dcd5b724}</Project>
+      <Name>BullsAndCows.Data</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

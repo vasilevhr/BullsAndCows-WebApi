@@ -10,6 +10,7 @@ using Microsoft.Owin.Security.OAuth;
 using Owin;
 using BullsAndCows.Web.Api.Providers;
 using BullsAndCows.Web.Api.Models;
+using BullsAndCows.Data;
 
 namespace BullsAndCows.Web.Api
 {
@@ -23,7 +24,7 @@ namespace BullsAndCows.Web.Api
         public void ConfigureAuth(IAppBuilder app)
         {
             // Configure the db context and user manager to use a single instance per request
-            app.CreatePerOwinContext(ApplicationDbContext.Create);
+            app.CreatePerOwinContext(BullsAndCowsDbContext.Create);
             app.CreatePerOwinContext<ApplicationUserManager>(ApplicationUserManager.Create);
 
             // Enable the application to use a cookie to store information for the signed in user

@@ -16,6 +16,7 @@ using Microsoft.Owin.Security.OAuth;
 using BullsAndCows.Web.Api.Models;
 using BullsAndCows.Web.Api.Providers;
 using BullsAndCows.Web.Api.Results;
+using BullsAndCows.Data.Models;
 
 namespace BullsAndCows.Web.Api.Controllers
 {
@@ -250,7 +251,7 @@ namespace BullsAndCows.Web.Api.Controllers
                 return new ChallengeResult(provider, this);
             }
 
-            ApplicationUser user = await UserManager.FindAsync(new UserLoginInfo(externalLogin.LoginProvider,
+            User user = await UserManager.FindAsync(new UserLoginInfo(externalLogin.LoginProvider,
                 externalLogin.ProviderKey));
 
             bool hasRegistered = user != null;
@@ -328,7 +329,7 @@ namespace BullsAndCows.Web.Api.Controllers
                 return BadRequest(ModelState);
             }
 
-            var user = new ApplicationUser() { UserName = model.Email, Email = model.Email };
+            var user = new User() { UserName = model.Email, Email = model.Email };
 
             IdentityResult result = await UserManager.CreateAsync(user, model.Password);
 
@@ -357,7 +358,7 @@ namespace BullsAndCows.Web.Api.Controllers
                 return InternalServerError();
             }
 
-            var user = new ApplicationUser() { UserName = model.Email, Email = model.Email };
+            var user = new User() { UserName = model.Email, Email = model.Email };
 
             IdentityResult result = await UserManager.CreateAsync(user);
             if (!result.Succeeded)

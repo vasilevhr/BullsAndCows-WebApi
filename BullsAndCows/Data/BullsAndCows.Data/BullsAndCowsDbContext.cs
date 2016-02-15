@@ -3,7 +3,7 @@
     using Models;
     using Microsoft.AspNet.Identity.EntityFramework;
 
-    public class BullsAndCowsDbContext : IdentityDbContext<User>
+    public class BullsAndCowsDbContext : IdentityDbContext<User>, IBullsAndCowsDbContext
     {
         public BullsAndCowsDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)

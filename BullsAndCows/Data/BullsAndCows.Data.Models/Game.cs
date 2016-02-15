@@ -26,7 +26,6 @@
 
         public GameResultType GameResult { get; set; }
 
-        [Required]
         public string RedUserId { get; set; }
 
         public virtual User RedUser { get; set; }

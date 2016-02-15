@@ -6,7 +6,5 @@ using Microsoft.AspNet.Identity.Owin;
 
 namespace BullsAndCows.Web.Api.Models
 {
-    
 
-    
 }

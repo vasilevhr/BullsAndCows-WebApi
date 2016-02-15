@@ -15,6 +15,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{456D51FB-F0E
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BullsAndCows.Web.Api", "Web\BullsAndCows.Web.Api\BullsAndCows.Web.Api.csproj", "{B8875870-EE13-404E-9D75-983048ADE3F6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BullsAndCows.Services.Data", "Services\BullsAndCows.Services.Data\BullsAndCows.Services.Data.csproj", "{06B8919B-B959-43A1-B72C-10A16E287D64}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{B8875870-EE13-404E-9D75-983048ADE3F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B8875870-EE13-404E-9D75-983048ADE3F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B8875870-EE13-404E-9D75-983048ADE3F6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{06B8919B-B959-43A1-B72C-10A16E287D64}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{06B8919B-B959-43A1-B72C-10A16E287D64}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{06B8919B-B959-43A1-B72C-10A16E287D64}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{06B8919B-B959-43A1-B72C-10A16E287D64}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -41,5 +47,6 @@ Global
 		{7F262115-A40C-4474-B52E-2CA2F20972EB} = {61ABAA47-2193-436A-A0BE-7ADD0C8E17A1}
 		{F8164565-9A09-440D-8AC9-94E5DCD5B724} = {61ABAA47-2193-436A-A0BE-7ADD0C8E17A1}
 		{B8875870-EE13-404E-9D75-983048ADE3F6} = {456D51FB-F0E0-47D3-9EC9-ACA44E487644}
+		{06B8919B-B959-43A1-B72C-10A16E287D64} = {C1F7C48E-3BE5-4557-943C-5C87CC4B50B7}
 	EndGlobalSection
 EndGlobal

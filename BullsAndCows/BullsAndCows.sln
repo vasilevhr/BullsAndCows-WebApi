@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BullsAndCows.Web.Api", "Web
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BullsAndCows.Services.Data", "Services\BullsAndCows.Services.Data\BullsAndCows.Services.Data.csproj", "{06B8919B-B959-43A1-B72C-10A16E287D64}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BullsAndCows.Common", "BullsAndCows.Common\BullsAndCows.Common.csproj", "{BFC9D42A-2D91-4E7B-9FCC-1D529177E236}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{06B8919B-B959-43A1-B72C-10A16E287D64}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{06B8919B-B959-43A1-B72C-10A16E287D64}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{06B8919B-B959-43A1-B72C-10A16E287D64}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BFC9D42A-2D91-4E7B-9FCC-1D529177E236}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BFC9D42A-2D91-4E7B-9FCC-1D529177E236}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BFC9D42A-2D91-4E7B-9FCC-1D529177E236}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BFC9D42A-2D91-4E7B-9FCC-1D529177E236}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

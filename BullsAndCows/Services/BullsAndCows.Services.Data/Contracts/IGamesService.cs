@@ -5,6 +5,6 @@
 
     public interface IGamesService
     {
-        IQueryable<Game> GetPublicGames(int page = 0);
+        IQueryable<Game> GetPublicGames(int page = 0, string userId = null);
     }
 }

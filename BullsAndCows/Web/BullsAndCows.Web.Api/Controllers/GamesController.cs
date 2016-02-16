@@ -1,8 +1,11 @@
 ﻿namespace BullsAndCows.Web.Api.Controllers
 {
+    using AutoMapper.QueryableExtensions;
+    using Models.Games;
     using Services.Data.Contracts;
+    using System.Linq;
     using System.Web.Http;
-
+    using Microsoft.AspNet.Identity;
 
     public class GamesController : ApiController
     {
@@ -15,12 +18,13 @@
 
         public IHttpActionResult Get(int page = 1)
         {
-            if (this.User.Identity.IsAuthenticated)
-            {
+            var userId = this.User.Identity.GetUserId();
+            var games = this.games
+                .GetPublicGames(page)
+                .ProjectTo<ListedGameResponseModel>()
+                .ToList();
 
-            }
-
-            return this.Ok(); 
+            return this.Ok(games);
         }
     }
 }

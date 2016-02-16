@@ -11,19 +11,19 @@
 
     public class AutoMapperConfig
     {
-        public static void RegisterMappings(params Assembly[] assemblies)
+        public static void RegisterMappings(params string[] assemblies)
         {
             Mapper.Configuration.ConstructServicesUsing(t => DependencyResolver.Current.GetService(t));
 
             var types = new List<Type>();
-            foreach (var assembly in assemblies)
+            foreach (var assembly in assemblies.Select(a => Assembly.Load(a)))
             {
                 types.AddRange(assembly.GetExportedTypes());
             }
 
             LoadStandardMappings(types);
             LoadCustomMappings(types);
-}
+        }
 
         private static void LoadStandardMappings(IEnumerable<Type> types)
         {

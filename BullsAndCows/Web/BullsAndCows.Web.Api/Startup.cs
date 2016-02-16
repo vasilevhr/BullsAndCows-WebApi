@@ -1,4 +1,5 @@
-﻿using Microsoft.Owin;
+﻿using BullsAndCows.Common.Constants;
+using Microsoft.Owin;
 using Ninject.Web.Common.OwinHost;
 using Ninject.Web.WebApi.OwinHost;
 using Owin;
@@ -12,6 +13,8 @@ namespace BullsAndCows.Web.Api
     {
         public void Configuration(IAppBuilder app)
         {
+            AutoMapperConfig.RegisterMappings(Assemblies.WebApi);
+
             ConfigureAuth(app);
 
             var httpConfig = new HttpConfiguration();

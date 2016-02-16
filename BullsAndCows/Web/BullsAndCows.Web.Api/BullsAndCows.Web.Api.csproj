@@ -320,6 +320,10 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\BullsAndCows.Common\BullsAndCows.Common.csproj">
+      <Project>{bfc9d42a-2d91-4e7b-9fcc-1d529177e236}</Project>
+      <Name>BullsAndCows.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Data\BullsAndCows.Data.Models\BullsAndCows.Data.Models.csproj">
       <Project>{7f262115-a40c-4474-b52e-2ca2f20972eb}</Project>
       <Name>BullsAndCows.Data.Models</Name>

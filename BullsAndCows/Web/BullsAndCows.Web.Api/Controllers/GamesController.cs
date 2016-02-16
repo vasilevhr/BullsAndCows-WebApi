@@ -15,7 +15,12 @@
 
         public IHttpActionResult Get(int page = 1)
         {
-            return null;
+            if (this.User.Identity.IsAuthenticated)
+            {
+
+            }
+
+            return this.Ok(); 
         }
     }
 }

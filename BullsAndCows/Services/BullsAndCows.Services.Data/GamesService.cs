@@ -14,9 +14,15 @@
             this.games = games;
         }
 
-        public IQueryable<Game> GetGames(int page = 0)
+        public IQueryable<Game> GetPublicGames(int page = 0)
         {
-            return null;
+            return this.games
+                .All()
+                .Where(g => g.GameState == GameState.WaitingForOpponent)
+                .OrderBy(g => g.GameState)
+                .ThenBy(g => g.Name)
+                .ThenBy(g => g.DateCreated)
+                .ThenBy(g => g.RedUser.Email);
         }
     }
 }

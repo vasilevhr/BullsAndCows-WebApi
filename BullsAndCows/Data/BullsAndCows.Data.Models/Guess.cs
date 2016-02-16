@@ -1,5 +1,6 @@
 ﻿namespace BullsAndCows.Data.Models
 {
+    using Common.Constants;
     using System;
     using System.ComponentModel.DataAnnotations;
 
@@ -9,8 +10,8 @@
         public int Id { get; set; }
 
         [Required]
-        [MinLength(4)]
-        [MaxLength(4)]
+        [MinLength(GameConstants.GuessNumberLength)]
+        [MaxLength(GameConstants.GuessNumberLength)]
         public string Number { get; set; }
         
         public DateTime DateMade { get; set; }

@@ -1,5 +1,6 @@
 ﻿namespace BullsAndCows.Data.Models
 {
+    using Common.Constants;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
@@ -17,7 +18,7 @@
         public int Id { get; set; }
 
         [Required]
-        [MaxLength(100)]
+        [MaxLength(GameConstants.GameNameMaxLength)]
         public string Name { get; set; }
 
         public DateTime DateCreated { get; set; }
@@ -25,6 +26,10 @@
         public GameState GameState { get; set; }
 
         public GameResultType GameResult { get; set; }
+
+        public string RedUserNumber { get; set; }
+
+        public string BlueUserNumber { get; set; }
 
         public string RedUserId { get; set; }
 

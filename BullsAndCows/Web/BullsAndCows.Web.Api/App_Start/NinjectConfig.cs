@@ -8,6 +8,7 @@
     using System.Web;
     using Services.Data.Contracts;
     using Services.Data;
+    using Common.Providers;
 
     public static class NinjectConfig
     {
@@ -33,6 +34,8 @@
         {
             kernel.Bind<IBullsAndCowsDbContext>().To<BullsAndCowsDbContext>();
             kernel.Bind(typeof(IRepository<>)).To(typeof(GenericRepository<>));
+
+            kernel.Bind<IRandomProvider>().To<RandomProvider>();
 
             kernel.Bind<IGamesService>().To<GamesService>();
         }

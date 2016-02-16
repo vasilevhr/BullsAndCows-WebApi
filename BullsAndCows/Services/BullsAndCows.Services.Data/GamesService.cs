@@ -6,14 +6,17 @@
     using System.Linq;
     using Common.Constants;
     using System;
+    using Common.Providers;
 
     public class GamesService : IGamesService
     {
         private IRepository<Game> games;
+        private IRandomProvider random;
 
-        public GamesService(IRepository<Game> games)
+        public GamesService(IRepository<Game> games, IRandomProvider random)
         {
             this.games = games;
+            this.random = random;
         }
 
         public IQueryable<Game> GetPublicGames(int page = 1, string userId = null)
@@ -51,6 +54,28 @@
         public IQueryable<Game> GetGameDetails(int id)
         {
             return this.games.All().Where(g => g.Id == id);
+        }
+
+        public bool GameCanBeJoinedByUser(int id, string userId)
+        {
+            return !this.games
+                .All()
+                .Any(g => g.Id == id
+                && (g.RedUserId == userId
+                || g.GameState != GameState.WaitingForOpponent));
+        }
+
+        public string JoinGame(int id, string number, string userId)
+        {
+            var gameToJoin = this.games.GetById(id);
+
+            gameToJoin.BlueUserId = userId;
+            gameToJoin.GameState = (GameState)this.random.GetRandomNumber(1, 2);
+            gameToJoin.BlueUserNumber = number;
+
+            this.games.SaveChanges();
+
+            return gameToJoin.Name;
         }
     }
 }

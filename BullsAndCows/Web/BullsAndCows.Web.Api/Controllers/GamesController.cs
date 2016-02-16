@@ -7,6 +7,7 @@
     using System.Web.Http;
     using Microsoft.AspNet.Identity;
     using AutoMapper;
+    using Infrastructure.Validation;
 
     public class GamesController : ApiController
     {
@@ -29,17 +30,9 @@
         }
 
         [Authorize]
+        [ValidateModel]
         public IHttpActionResult Post(CreateGameRequestModel model)
         {
-            if (model == null || !this.ModelState.IsValid)
-            {
-                if (model == null)
-                {
-                    return this.BadRequest("Game cannot be empty!"); 
-                }
-                return this.BadRequest(this.ModelState);
-            }
-
             var newGame = this.games.CreateGame(
                 model.Name,
                 model.Number,
@@ -53,6 +46,23 @@
             return this.Created(
                 string.Format("/api/Games/{0}", newGame.Id),
                 gameResult);
+        }
+
+        [Authorize]
+        [ValidateModel]
+        public IHttpActionResult Put(int id, BaseGameRequestModel model) 
+        {
+            var userId = this.User.Identity.GetUserId();
+            if (!this.games.GameCanBeJoinedByUser(id, userId))
+            {
+                return this.BadRequest("This game is yours!");
+            }
+
+            //TODO: add notification
+
+            var joinedGame = this.games.JoinGame(id, model.Number, userId);
+
+            return this.Ok(new { result = string.Format("You joined game \"{0}\"", joinedGame) });
         }
     }
 }

@@ -26,6 +26,8 @@
 
         public IEnumerable<GuessDetailsResponseModel> YourGuesses { get; set; }
 
+        public IEnumerable<GuessDetailsResponseModel> OpponentGuesses { get; set; }
+
         public string GameState { get; set; }
 
         public void CreateMappings(IConfiguration configuration)
@@ -38,7 +40,8 @@
                 .ForMember(g => g.GameState, opts => opts.MapFrom(g => g.GameState.ToString()))
                 .ForMember(g => g.YourNumber, opts => opts.MapFrom(g => g.BlueUserId == userId ? g.BlueUserNumber : g.RedUserNumber))
                 .ForMember(g => g.YourColor, opts => opts.MapFrom(g => g.BlueUserId == userId ? "blue" : "red"))
-                .ForMember(g => g.YourGuesses, opts => opts.MapFrom(g => g.Guesses.Where(gs => gs.UserId == userId)));
+                .ForMember(g => g.YourGuesses, opts => opts.MapFrom(g => g.Guesses.Where(gs => gs.UserId == userId)))
+                .ForMember(g => g.OpponentGuesses, opts => opts.MapFrom(g => g.Guesses.Where(gs => gs.UserId != userId)));
         }
     }
 }

@@ -4,6 +4,7 @@
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
 
     public class Game
     {
@@ -23,6 +24,7 @@
 
         public DateTime DateCreated { get; set; }
 
+        [Index]
         public GameState GameState { get; set; }
 
         public GameResultType GameResult { get; set; }

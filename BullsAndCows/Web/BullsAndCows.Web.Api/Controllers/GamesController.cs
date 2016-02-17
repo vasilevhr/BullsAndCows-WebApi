@@ -12,8 +12,8 @@
 
     public class GamesController : ApiController
     {
-        private IGamesService games;
-        private IGuessService guesses;
+        private readonly IGamesService games;
+        private readonly IGuessService guesses;
 
         public GamesController(IGamesService games, IGuessService guesses)
         {
@@ -51,7 +51,7 @@
 
             var gameResult = this.games
                 .GetGameDetails(id)
-                .ProjectTo<GameDetailsResponseModel>()
+                .ProjectTo<GameDetailsResponseModel>(new { userId })
                 .FirstOrDefault();
 
             return this.Ok(gameResult);

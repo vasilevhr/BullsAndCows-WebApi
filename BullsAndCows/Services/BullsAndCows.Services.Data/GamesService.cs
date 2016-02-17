@@ -10,11 +10,13 @@
 
     public class GamesService : IGamesService
     {
-        private IRepository<Game> games;
-        private IRandomProvider random;
+        private readonly IHighScoreService highScore;
+        private readonly IRepository<Game> games;
+        private readonly IRandomProvider random;
 
-        public GamesService(IRepository<Game> games, IRandomProvider random)
+        public GamesService(IHighScoreService highScore, IRepository<Game> games, IRandomProvider random)
         {
+            this.highScore = highScore;
             this.games = games;
             this.random = random;
         }
@@ -103,10 +105,14 @@
                 if (game.GameState == GameState.BlueInTurn)
                 {
                     game.GameResult = GameResultType.WonByBlue;
+                    this.highScore.UpdateRank(game.BlueUserId, won: true);
+                    this.highScore.UpdateRank(game.RedUserId, won: false);
                 }
                 else if (game.GameState == GameState.RedInTurn)
                 {
                     game.GameResult = GameResultType.WonByRed;
+                    this.highScore.UpdateRank(game.RedUserId, won: true);
+                    this.highScore.UpdateRank(game.BlueUserId, won: false);
                 }
 
                 game.GameState = GameState.Finished;

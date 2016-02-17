@@ -9,8 +9,8 @@
 
     public class GuessService : IGuessService
     {
-        private IGamesService games;
-        private IRepository<Guess> guesses;
+        private readonly IGamesService games;
+        private readonly IRepository<Guess> guesses;
 
         public GuessService(IGamesService games, IRepository<Guess> guesses)
         {

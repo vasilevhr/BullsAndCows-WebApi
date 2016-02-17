@@ -15,6 +15,8 @@
             this.guesses = new HashSet<Guess>();
         }
 
+        public int Rank { get; set; }
+
         public virtual ICollection<Guess> Guesses
         {
             get { return this.guesses; }

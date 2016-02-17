@@ -257,6 +257,7 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Games\CreateGameRequestModel.cs" />
     <Compile Include="Models\Games\BaseGameRequestModel.cs" />
+    <Compile Include="Models\Games\GameDetailsResponseModel.cs" />
     <Compile Include="Models\Games\ListedGameResponseModel.cs" />
     <Compile Include="Models\Guesses\GuessDetailsResponseModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -21,15 +21,40 @@
             this.guesses = guesses;
         }
 
-        public IHttpActionResult Get(int page = 1)
+        public IHttpActionResult Get(string page = "1")
         {
+            int pageAsNumber;
+
+            if (!int.TryParse(page, out pageAsNumber))
+            {
+                pageAsNumber = 1;
+            }
+
             var userId = this.User.Identity.GetUserId();
             var games = this.games
-                .GetPublicGames(page)
+                .GetPublicGames(pageAsNumber)
                 .ProjectTo<ListedGameResponseModel>()
                 .ToList();
 
             return this.Ok(games);
+        }
+
+        [Authorize]
+        public IHttpActionResult Get(int id)
+        {
+            var userId = this.User.Identity.GetUserId();
+
+            if (!this.games.UserIsPartOfGame(id, userId))
+            {
+                return this.BadRequest("You are not part of this game!");
+            }
+
+            var gameResult = this.games
+                .GetGameDetails(id)
+                .ProjectTo<GameDetailsResponseModel>()
+                .FirstOrDefault();
+
+            return this.Ok(gameResult);
         }
 
         [Authorize]

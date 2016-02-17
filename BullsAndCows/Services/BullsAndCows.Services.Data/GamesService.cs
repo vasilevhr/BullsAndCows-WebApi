@@ -87,6 +87,13 @@
                 || (g.GameState == GameState.RedInTurn && g.RedUserId == userId))); 
         }
 
+        public bool UserIsPartOfGame(int id, string userId)
+        {
+            return this.games
+                .All()
+                .Any(g => g.Id == id && (g.BlueUserId == userId || g.RedUserId == userId));
+        }
+
         public void ChangeGameState(int id, bool finished)
         {
             var game = this.GetGameDetails(id).FirstOrDefault();

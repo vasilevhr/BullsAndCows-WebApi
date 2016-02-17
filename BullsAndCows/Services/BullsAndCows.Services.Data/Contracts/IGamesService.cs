@@ -18,5 +18,7 @@
         bool CanMakeGuess(int id, string userId);
         
         void ChangeGameState(int id, bool finished);
+
+        bool UserIsPartOfGame(int id, string userId);
     }
 }

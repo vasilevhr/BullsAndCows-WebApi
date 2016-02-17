@@ -8,14 +8,17 @@
     using Microsoft.AspNet.Identity;
     using AutoMapper;
     using Infrastructure.Validation;
+    using Models.Guesses;
 
     public class GamesController : ApiController
     {
         private IGamesService games;
+        private IGuessService guesses;
 
-        public GamesController(IGamesService games)
+        public GamesController(IGamesService games, IGuessService guesses)
         {
-            this.games = games; 
+            this.games = games;
+            this.guesses = guesses;
         }
 
         public IHttpActionResult Get(int page = 1)
@@ -63,6 +66,27 @@
             var joinedGame = this.games.JoinGame(id, model.Number, userId);
 
             return this.Ok(new { result = string.Format("You joined game \"{0}\"", joinedGame) });
+        }
+
+        [HttpPost]
+        [Route("api/games/{id}/guess")]
+        [ValidateModel]
+        public IHttpActionResult Guess(int id, BaseGameRequestModel model)
+        {
+            var userId = this.User.Identity.GetUserId();
+            if (!this.games.CanMakeGuess(id, userId))
+            {
+                return this.BadRequest("Either you are not part of the game or it is not your turn!");
+            }
+
+            var newGuess = this.guesses.MakeGuess(id, model.Number, userId);
+
+            var guessResult = this.guesses
+                .GetGuessDetails(newGuess.Id)
+                .ProjectTo<GuessDetailsResponseModel>()
+                .FirstOrDefault();
+
+            return this.Ok(guessResult);
         }
     }
 }

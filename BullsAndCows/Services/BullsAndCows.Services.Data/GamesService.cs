@@ -77,5 +77,46 @@
 
             return gameToJoin.Name;
         }
+
+        public bool CanMakeGuess(int id, string userId)
+        {
+            return this.games
+                .All()
+                .Any(g => g.Id == id
+                && ((g.GameState == GameState.BlueInTurn && g.BlueUserId == userId)
+                || (g.GameState == GameState.RedInTurn && g.RedUserId == userId))); 
+        }
+
+        public void ChangeGameState(int id, bool finished)
+        {
+            var game = this.GetGameDetails(id).FirstOrDefault();
+
+            if (finished)
+            {
+                if (game.GameState == GameState.BlueInTurn)
+                {
+                    game.GameResult = GameResultType.WonByBlue;
+                }
+                else if (game.GameState == GameState.RedInTurn)
+                {
+                    game.GameResult = GameResultType.WonByRed;
+                }
+
+                game.GameState = GameState.Finished;
+            }
+            else
+            {
+                if (game.GameState == GameState.BlueInTurn)
+                {
+                    game.GameState = GameState.RedInTurn;
+                }
+                else if(game.GameState == GameState.RedInTurn)
+                {
+                    game.GameState = GameState.BlueInTurn;
+                }
+            }
+
+            games.SaveChanges();
+        }
     }
 }
